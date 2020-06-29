@@ -129,7 +129,7 @@ def _get_security_group_id(connection, security_group_name, subnet):
 
 # Methods
 
-def up(count, group, zone, image_id, instance_type, username, key_name, subnet, tags, bid = None):
+def up(count, group, zone, image_id, instance_type, username, key_name, subnet, tags, bid = None, profile = None):
     """
     Startup the load testing server.
     """
@@ -197,7 +197,8 @@ def up(count, group, zone, image_id, instance_type, username, key_name, subnet, 
             security_group_ids=[groupId],
             instance_type=instance_type,
             placement=placement,
-            subnet_id=subnet)
+            subnet_id=subnet,
+            instance_profile_arn=profile)
 
         # it can take a few seconds before the spot requests are fully processed
         time.sleep(5)
@@ -215,7 +216,8 @@ def up(count, group, zone, image_id, instance_type, username, key_name, subnet, 
                 security_group_ids=[groupId],
                 instance_type=instance_type,
                 placement=placement,
-                subnet_id=subnet)
+                subnet_id=subnet,
+                instance_profile_arn=profile)
 
         except boto.exception.EC2ResponseError as e:
             print(("Unable to call bees:", e.message))

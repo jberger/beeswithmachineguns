@@ -209,6 +209,8 @@ Options:
                         launched. (default: None).
     -b BID, --bid=BID   The maximum bid price per spot instance (default:
                         None).
+    -q PROFILE, --profile=PROFILE
+                        The iam instance profile. (default: None).
 
   attack:
     Beginning an attack requires only that you specify the -u option with
